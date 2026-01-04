@@ -8,12 +8,6 @@ pipeline {
             }
         }
 
-        stage("Git Checkout") {
-            steps {
-                git 'https://github.com/RishiKandi/FoodAppZomato.git'
-            }
-        }
-
         stage("Install NPM Dependencies") {
             steps {
                 sh 'npm install'
