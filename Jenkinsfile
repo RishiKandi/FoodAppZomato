@@ -45,7 +45,7 @@ pipeline {
 
     stage('Deploy to EKS') {
       steps {
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
+        
           sh '''
             aws sts get-caller-identity
             aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
@@ -53,7 +53,6 @@ pipeline {
             kubectl apply -f Kubernetes/service.yaml
             kubectl rollout restart deployment zomato
           '''
-        }
       }
     }
   }
@@ -67,3 +66,4 @@ pipeline {
     }
   }
 }
+
